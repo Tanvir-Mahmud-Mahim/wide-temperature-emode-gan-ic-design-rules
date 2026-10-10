@@ -12,8 +12,8 @@ authors:
     given-names: Nadim
     orcid: "https://orcid.org/0000-0002-3677-4556"
 license: Apache-2.0
-version: "v1.0.0"
-doi: "10.5281/zenodo.23283611"
+version: "v1.0.1"
+doi: "10.5281/zenodo.23284701"
 date-released: "2026-10-10"
 repository-code: "https://github.com/Tanvir-Mahmud-Mahim/wide-temperature-emode-gan-ic-design-rules"
 preferred-citation:
