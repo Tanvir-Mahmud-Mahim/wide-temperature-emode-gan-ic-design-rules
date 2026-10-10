@@ -3,6 +3,7 @@
 Code and circuit-level results for the article *"Device-physics design rules for wide-temperature
 enhancement-mode gallium nitride integrated circuits, revealed by transistor-anchored machine
 learning"* (T. M. Mahim, M. M. Rahman, N. Chowdhury).
+Archived release: [doi:10.5281/zenodo.23283611](https://doi.org/10.5281/zenodo.23283611).
 
 The probe circuit is a monolithic e-mode GaN-on-SOI fractional-N PLL in which every block is built
 from e-mode HEMTs, sized by learned models and verified by transistor-level simulation with the

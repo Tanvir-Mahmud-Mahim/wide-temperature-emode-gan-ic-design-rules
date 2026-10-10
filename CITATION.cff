@@ -12,7 +12,10 @@ authors:
     given-names: Nadim
     orcid: "https://orcid.org/0000-0002-3677-4556"
 license: Apache-2.0
-repository-code: "https://github.com/Tanvir-Mahmud-Mahim/Physics-Informed-Machine-Learning-and-Adjoint-Co-Design-of-Monolithic-GaN-HEMT-Varactor-PLL"
+version: "v1.0.0"
+doi: "10.5281/zenodo.23283611"
+date-released: "2026-10-10"
+repository-code: "https://github.com/Tanvir-Mahmud-Mahim/wide-temperature-emode-gan-ic-design-rules"
 preferred-citation:
   type: article
   title: "Device-physics design rules for wide-temperature enhancement-mode gallium nitride integrated circuits, revealed by transistor-anchored machine learning"
