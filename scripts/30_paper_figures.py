@@ -222,15 +222,16 @@ if 'precharge' in which:
     for T in sorted({r['T'] for r in pr}):
         rr = sorted([r for r in pr if r['T'] == T], key=lambda r: r['vpre'])
         v = [r['vpre'] for r in rr]; f = [r['f'] / 1e6 for r in rr]
-        ax.plot(v, f, '-', marker=tmk(T), ms=4, color=tcol(T), label='%d K' % T)
+        PCOL = {300: BLUE, 348: AQUA, 373: YELLOW, 398: ORANGE, 423: '#9b1c1c'}   # distinct hues, ordered cool to hot
+        ax.plot(v, f, '-', marker=tmk(T), ms=4, color=PCOL.get(int(T), tcol(T)), label='%d K' % T)
         for r in rr:
             if r['f'] <= 1e6:
                 ax.plot(r['vpre'], 0, 'x', color='#e34948', ms=7, mew=1.5)
     ax.plot([], [], 'x', color='#e34948', ms=7, mew=1.5, label='no oscillation')
-    ax.axvline(6.0, color='0.6', lw=0.7, ls='--'); ax.text(6.02, 3, '$V_{pre}=V_{DD}$', fontsize=7, color='0.35')
+    ax.axvline(6.0, color='0.6', lw=0.7, ls='--'); ax.text(6.025, 88, '$V_{pre}=V_{DD}$', fontsize=7, color='0.35', ha='left', va='top')
     ax.set_xlabel('Bootstrap precharge voltage $V_{pre}$ (V)'); ax.set_ylabel('Ring frequency (MHz)')
     ax.legend(fontsize=6.5, ncol=2, loc='lower right'); ax.set_ylim(-4, 90)
-    fig.tight_layout(pad=0.4); fig.savefig('figures/fig_precharge.pdf'); plt.close(fig); print('fig_precharge')
+    fig.tight_layout(pad=0.4); fig.savefig('figures/fig_precharge.pdf', bbox_inches='tight', pad_inches=0.03); plt.close(fig); print('fig_precharge')
 
 if 'cvcheck' in which:
     # normalized shapes only: the absolute capacitance and the threshold shift of the PDK device

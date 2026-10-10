@@ -421,11 +421,11 @@ s = r'''\begin{table*}[t]
  & \cite{wang2025hightempPLL} & \cite{gong2023cryoPLL} & \cite{Shepherd2014} & \cite{yuan2022ganRO} & \cite{li2026ganwide} & This work \\
 \midrule
 Evidence & meas. & meas. & meas. & meas. & meas. & sim. (open flow, foundry model) \\
-Technology & 22-nm FD-SOI CMOS & 40-nm CMOS & 1.2-$\mu$m SiC CMOS & GaN-on-Si, E/D-mode & GaN, E/D-mode & GaN-on-SOI, e-mode only \\
+Technology & 22-nm FD-SOI CMOS & 40-nm CMOS & SiC CMOS & GaN-on-Si, E/D-mode & GaN, E/D-mode & GaN-on-SOI, e-mode only \\
 Circuit & PLL & PLL, sub-sampling detector & charge-pump PLL & ring oscillator (open loop) & logic, ring oscillator & fractional-N PLL, ring VCO \\
-Output frequency & 0.6--4.8~GHz & 9.4--11.6~GHz (4.2~K) & up to 1.5~MHz & n.r. (0.31~ns/stage at 298~K) & $>$10~MHz & 50~MHz ($N=5$), 52~MHz ($N=5.2$) \\
-Temperature & 300--423~K & 4.2 and 300~K & RT to 423~K & 298--773~K & 5--800~K & 218--423~K (10 points) \\
-Power & 5.7~mW (2.4~GHz, 423~K) & 2.7~mW (4.2~K), 4~mW (300~K) & n.r. & n.r. & n.r. & ''' + '%.0f~mW (300~K)' % P300 + r''' \\
+Output frequency & 0.6--4.8~GHz & 9.4--11.6~GHz (4.2~K) & up to 1.5~MHz & n.r. (stage delay $<$1.48~ns at 773~K) & $>$10~MHz & 50~MHz ($N=5$), 52~MHz ($N=5.2$) \\
+Temperature & 300--423~K & 4.2 and 300~K & n.r. (high-temperature SiC process) & 298--773~K & 5--800~K & 218--423~K (10 points) \\
+Power & 5.7~mW (2.4~GHz) & 2.7~mW (4.2~K), 4~mW (300~K) & n.r. & n.r. & n.r. & ''' + '%.0f~mW (300~K)' % P300 + r''' \\
 Phase noise at 1~MHz & $-87.9$~dBc/Hz (423~K), $-90.3$ (300~K) & n.r. & n.r. & n.r. & n.r. & ''' + '%s (model, 300~K)' % M.get('NZpn', 'model') + r''' \\
 RMS jitter & n.r. & 37~fs (4.2~K), 75~fs (300~K) & n.r. & -- & -- & ''' + '%.1f~ns (model, 300~K)' % jit300 + r''' \\
 FoM$_{\mathrm{jitter}}$ & n.r. & $-256.5$~dB (300~K) & n.r. & -- & -- & ''' + '%.0f~dB (model jitter, sim.\\ power)' % fom + r''' \\
@@ -442,16 +442,16 @@ if os.path.exists(f'{TL}/divider_tests.json'):
     dv = J(f'{TL}/divider_tests.json')
     s = ('\\begin{table}[h]\n\\centering\n\\caption{Stand-alone two-cell divider as used in the final design (open flow, ideal input clock; gate size of cell 1: 0.75, cell 2: 0.5 of the unit gate). '
          'Fractional mode: MASH-2 word sequence for $N=5+\\text{frac}$, matched cycle by cycle against the expected sequence.}\n'
-         '\\label{st:div}\n\\small\n\\begin{tabular}{@{}cccccc@{}}\n\\toprule\n$T$ (K) & Input (MHz) & Mode & $k_1$ & Result & Power (mW) \\\\\n\\midrule\n')
+         '\\label{st:div}\n\\small\n\\begin{tabular}{@{}ccccc@{}}\n\\toprule\n$T$ (K) & Input (MHz) & Mode & Result (output cycles) & Power (mW) \\\\\n\\midrule\n')
     for e in (dv.get('div23_final') or dv['div23']):
         c_, r_ = e['cfg'], e['res']
         mode = 'fractional' if c_.get('mode') == 'frac' else 'integer $N=%d$' % c_['nword']
         if 'match' in r_:
-            res = '%s cycles matched' % r_['match']
+            res = '%s matched' % r_['match'].replace('/', ' of ') if isinstance(r_['match'], str) else '%s matched' % r_['match']
         else:
             rs = r_['ratios']; k0 = next((i for i in range(len(rs)) if all(x == c_['nword'] for x in rs[i:])), None)
-            res = ('%d of %d cycles correct' % (len(rs) - k0, len(rs)) + (' (after %d start-up cycles)' % k0 if k0 else '')) if k0 is not None and k0 < len(rs) else 'mean ratio %.3f' % r_['mean_ratio']
-        s += '%d & %.0f & %s & %.2f & %s & %.0f \\\\\n' % (c_['T_K'], c_['fin'] / 1e6, mode, c_['k1'], res, r_['p_mW'])
+            res = ('%d of %d correct' % (len(rs) - k0, len(rs)) + (' (first %d are start-up)' % k0 if k0 else '')) if k0 is not None and k0 < len(rs) else 'mean ratio %.3f' % r_['mean_ratio']
+        s += '%d & %.0f & %s & %s & %.0f \\\\\n' % (c_['T_K'], c_['fin'] / 1e6, mode, res, r_['p_mW'])
     s += '\\bottomrule\n\\end{tabular}\n\\end{table}\n'
     wtab('tab_div', s)
 

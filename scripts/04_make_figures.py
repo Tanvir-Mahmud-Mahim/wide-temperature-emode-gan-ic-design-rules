@@ -140,7 +140,7 @@ print('FN2 done')
 # =====================================================================
 # FN3: adjoint optimization
 # =====================================================================
-fig, axs = plt.subplots(1, 3, figsize=(W2, 2.75), gridspec_kw=dict(width_ratios=[1.05, 0.95, 1.1]))
+fig, axs = plt.subplots(1, 3, figsize=(W2, 2.85), gridspec_kw=dict(width_ratios=[1.0, 0.85, 1.25]))
 ax = axs[0]
 h2 = json.load(open('results/opt_hist2.json'))   # fixed-bias stage
 htt = json.load(open('results/opt_hist_tt.json'))  # thermally tracked stage
@@ -163,7 +163,7 @@ ax.set_title('(a) Convergence', fontsize=8.5)
 
 ax = axs[1]
 gc = ares['gradient_cost']
-names = ['forward\ntransients', 'adjoint\ngradient', 'central FD\ngradient']
+names = ['forward\ntransients', 'adjoint\ngradient', 'finite-diff.\ngradient']
 vals = [gc['t_forward_s'], gc['t_adjoint_s'], gc['t_fd_s']]
 cols = ['#a2a9b0', '#0f62fe', '#a2a9b0']
 b = ax.bar(names, vals, width=0.55, color=cols)
@@ -171,15 +171,16 @@ for r, v in zip(b, vals):
     ax.text(r.get_x()+r.get_width()/2, v*1.03, f'{v:.2f} s', ha='center', fontsize=7.5)
 ax.set_ylabel('Wall-clock time (s)')
 ax.set_ylim(0, max(vals)*1.2)
-ax.set_title(f"(b) Gradient cost, {gc['n_params']} params\n(cosine agreement {gc['cosine_agreement']:.3f})", fontsize=8.5)
+ax.set_title(f"(b) Gradient cost, {gc['n_params']} parameters", fontsize=8.5)
+ax.text(0.04, 0.96, f"gradient agreement\n(cosine) {gc['cosine_agreement']:.3f}", transform=ax.transAxes, ha='left', va='top', fontsize=6.8, color='0.3')
 
 ax = axs[2]
 dnames = [n for n, _, _ in adjoint.DESIGN_SPACE if n in ares['optimization']['design']]
 _dsrc = ares['optimization']['design']          # iteration-1 co-designed parameters
 dvals = [_dsrc.get(n, 1.0) for n in dnames]
-pretty = {'s_icp': 'pump current', 's_rs1': '$R_{s1}$', 's_cs1': '$C_{s1}$',
+pretty = {'s_icp': 'Pump current', 's_rs1': '$R_{s1}$', 's_cs1': '$C_{s1}$',
           's_rs23': '$R_{s23}$', 's_c2': '$C_2$ width', 's_c3': '$C_3$ width',
-          'drive': 'drive', 's_cfix': 'delay cap.', 's_var': 'VCO varactor',
+          'drive': 'Drive', 's_cfix': 'Delay cap.', 's_var': 'VCO varactor',
           'dvb': '$\\Delta V_b$ (V)', 'dvb_t': '$|s_T|$ (mV/K)'}
 y = np.arange(len(dnames))
 mult = [abs(v)*1e3 if n == 'dvb_t' else max(v, 1e-2) for n, v in zip(dnames, dvals)]
@@ -189,13 +190,13 @@ ax.axvline(1.0, color='0.4', lw=0.8, ls='--')
 ax.set_yticks(y, [pretty[n] for n in dnames])
 ax.set_xscale('log')
 ax.set_xlabel('Optimized value (scale factor)', fontsize=8)
-ax.set_xlim(None, max(mult)*3.0)
+ax.set_xlim(min(mult)/2.5, max(mult)*5.0)
 for yi, v in zip(y, mult):
-    ax.text(v*1.15 if v > 0 else 0.1, yi, f'{v:.2f}', va='center', fontsize=6.8)
+    ax.annotate(f'{v:.2f}', xy=(v, yi), xytext=(3, 0), textcoords='offset points', va='center', ha='left', fontsize=6.8)
 ax.set_title('(c) Optimized design', fontsize=8.5)
 ax.invert_yaxis()
-fig.tight_layout(pad=0.4)
-fig.savefig('figures/FN3.svg'); fig.savefig('figures/FN3.pdf'); plt.close(fig)
+fig.tight_layout(pad=0.5, w_pad=1.2)
+fig.savefig('figures/FN3.svg', bbox_inches='tight', pad_inches=0.04); fig.savefig('figures/FN3.pdf', bbox_inches='tight', pad_inches=0.04); plt.close(fig)
 print('FN3 done')
 
 # =====================================================================
