@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the article below."
+title: "Device-physics design rules for wide-temperature e-mode GaN ICs (code and circuit-level results)"
+authors:
+  - family-names: Mahim
+    given-names: Tanvir M.
+    orcid: "https://orcid.org/0000-0002-4550-3248"
+  - family-names: Rahman
+    given-names: M. Mosaddequr
+    orcid: "https://orcid.org/0000-0001-9004-6237"
+  - family-names: Chowdhury
+    given-names: Nadim
+    orcid: "https://orcid.org/0000-0002-3677-4556"
+license: Apache-2.0
+repository-code: "https://github.com/Tanvir-Mahmud-Mahim/Physics-Informed-Machine-Learning-and-Adjoint-Co-Design-of-Monolithic-GaN-HEMT-Varactor-PLL"
+preferred-citation:
+  type: article
+  title: "Device-physics design rules for wide-temperature enhancement-mode gallium nitride integrated circuits, revealed by transistor-anchored machine learning"
+  authors:
+    - family-names: Mahim
+      given-names: Tanvir M.
+    - family-names: Rahman
+      given-names: M. Mosaddequr
+    - family-names: Chowdhury
+      given-names: Nadim
+  status: submitted

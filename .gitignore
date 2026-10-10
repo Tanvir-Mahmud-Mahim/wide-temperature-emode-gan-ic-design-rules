@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.log
+!results/tl_vcro_fit.log
+!results/rl_rerun.log
+# foundry PDK and anything derived from it at device level (non-disclosure agreement)
+*.osdi
+*.va
+*.scs
+*.sp
+eda/
+tl/scratch/
+results/pdk_derived.json
+results/devtables.json
+results/cv_map.json
