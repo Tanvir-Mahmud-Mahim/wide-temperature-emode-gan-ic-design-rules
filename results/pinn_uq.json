@@ -1,0 +1,43 @@
+{
+ "ensemble": {
+  "member_rmse_pct": [
+   0.24852621983803413,
+   2.3467420505098415,
+   0.15622956743369942,
+   1.1690574739263035,
+   0.3724902615354174
+  ],
+  "mean_rmse_pct": 0.5597804141666262,
+  "mean_rel_sigma_pct": 0.994933951753456,
+  "max_rel_sigma_pct": 2.265267608871649,
+  "coverage_2sigma": 1.0,
+  "coverage_2sigma_with_floor": 1.0
+ },
+ "loto": {
+  "218": {
+   "rmse_pct": 25.74403728836004,
+   "n_test": 82,
+   "extrapolation": true
+  },
+  "273": {
+   "rmse_pct": 1.537160145482421,
+   "n_test": 82,
+   "extrapolation": false
+  },
+  "300": {
+   "rmse_pct": 2.959281549608781,
+   "n_test": 82,
+   "extrapolation": false
+  },
+  "398": {
+   "rmse_pct": 2.5533175250831563,
+   "n_test": 82,
+   "extrapolation": false
+  },
+  "423": {
+   "rmse_pct": 7.772858024268631,
+   "n_test": 82,
+   "extrapolation": true
+  }
+ }
+}

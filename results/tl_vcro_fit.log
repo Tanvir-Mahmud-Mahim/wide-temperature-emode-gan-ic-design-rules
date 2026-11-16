@@ -1,0 +1,9 @@
+points 520 oscillating 409
+fold 0: blind freq MAPE 3.71% (median 2.98%), onset accuracy 95.2%
+fold 1: blind freq MAPE 3.63% (median 2.49%), onset accuracy 97.1%
+fold 2: blind freq MAPE 3.89% (median 2.80%), onset accuracy 99.0%
+fold 3: blind freq MAPE 2.90% (median 2.24%), onset accuracy 98.1%
+fold 4: blind freq MAPE 4.08% (median 3.37%), onset accuracy 99.0%
+5-fold blind: freq MAPE 3.64%, p90 7.48%, onset accuracy 97.7%
+power model MAPE 2.35%, stress model MAE 37 mV
+saved /home/claude/work/model/tl_vcro3.json
