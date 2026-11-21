@@ -1,5 +1,10 @@
 # Changelog
 
+## Citation update (2026-11-21, no new release)
+The article was published online in *Materials Today Communications* (2026) 116682,
+doi:10.1016/j.mtcomm.2026.116682 (in press, no volume yet). `README.md` and `CITATION.cff` now
+cite it; no code, result or number changed, and v1.1.2 remains the release cited in the article.
+
 ## v1.1.2 (2026-11-16)
 Reference check for the first revision; no simulation result or number changed.
 - `scripts/31_paper_numbers.py`, benchmark table (`tab_bench`): the values of the cited works are

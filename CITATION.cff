@@ -26,4 +26,11 @@ preferred-citation:
       given-names: M. Mosaddequr
     - family-names: Chowdhury
       given-names: Nadim
-  status: submitted
+  journal: "Materials Today Communications"
+  year: 2026
+  month: 11
+  start: "116682"
+  doi: "10.1016/j.mtcomm.2026.116682"
+  url: "https://doi.org/10.1016/j.mtcomm.2026.116682"
+  issn: "2352-4928"
+  status: in-press

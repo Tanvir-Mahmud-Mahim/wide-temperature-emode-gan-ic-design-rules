@@ -2,8 +2,9 @@
 
 Code and circuit-level results for the article *"Device-physics design rules for wide-temperature
 enhancement-mode gallium nitride integrated circuits, revealed by transistor-anchored machine
-learning"* (T. M. Mahim, M. M. Rahman, N. Chowdhury).
-Archived release v1.1.2: [doi:10.5281/zenodo.24273616](https://doi.org/10.5281/zenodo.24273616)
+learning"* (T. M. Mahim, M. M. Rahman, N. Chowdhury), *Materials Today Communications* (2026)
+116682, [doi:10.1016/j.mtcomm.2026.116682](https://doi.org/10.1016/j.mtcomm.2026.116682).
+Archived release v1.1.2, the version cited in the article: [doi:10.5281/zenodo.24273616](https://doi.org/10.5281/zenodo.24273616)
 (all versions: [doi:10.5281/zenodo.23283610](https://doi.org/10.5281/zenodo.23283610); changes in `CHANGELOG.md`).
 
 The probe circuit is an e-mode GaN-on-SOI fractional-N PLL in which every block except the
@@ -72,6 +73,36 @@ VACASK cross-check (VACASK 0.3.4, <https://codeberg.org/arpadbuermen/VACASK>):
 openvaf-r MVSG.va -o mvsg.osdi                  # the PDK's Verilog-A file, compiled locally
 export VACASK=/path/to/vacask MVSG_OSDI_R=/path/to/mvsg.osdi
 cd tl && python vacask_closed.py designs/final_f2.json 300 --tstop 30e-6 --tag vac
+```
+
+## Citation
+
+If you use this code or these results, please cite the article:
+
+```bibtex
+@article{Mahim2026,
+  author  = {Mahim, Tanvir M. and Rahman, M. Mosaddequr and Chowdhury, Nadim},
+  title   = {Device-physics design rules for wide-temperature enhancement-mode gallium nitride
+             integrated circuits, revealed by transistor-anchored machine learning},
+  journal = {Materials Today Communications},
+  year    = {2026},
+  pages   = {116682},
+  doi     = {10.1016/j.mtcomm.2026.116682}
+}
+```
+
+To cite the code itself, cite the archived release:
+
+```bibtex
+@software{Mahim2026code,
+  author    = {Mahim, Tanvir M. and Rahman, M. Mosaddequr and Chowdhury, Nadim},
+  title     = {Device-physics design rules for wide-temperature enhancement-mode {GaN} integrated
+               circuits: code and circuit-level results},
+  version   = {v1.1.2},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.24273616}
+}
 ```
 
 ## License
